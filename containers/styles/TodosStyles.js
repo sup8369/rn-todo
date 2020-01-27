@@ -33,8 +33,8 @@ export const styles = (props = {}) =>
       height: props.isActivated ? 25 : 20,
       marginVertical: props.isActivated ? 0 : 2.5,
       borderRadius: props.isActivated ? 10 : 20,
-      justifyContent: "center", //Centered vertically
-      alignItems: "center" // Centered horizontally
+      justifyContent: "center",
+      alignItems: "center"
     },
     dateLabel: {
       color: defaultColors.white
@@ -47,6 +47,7 @@ export const styles = (props = {}) =>
       color: props.isActivated ? defaultColors.primary : defaultColors.secondary
     },
     todoContainer: {
-      flexDirection: "row"
+      flexDirection: "row",
+      paddingTop: 19
     }
   });

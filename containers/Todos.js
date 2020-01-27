@@ -1,14 +1,20 @@
 import React, { Component } from "react";
-import { View, Text, CheckBox, ScrollView } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import { Icon } from "native-base";
+import CheckBox from "react-native-check-box";
+import defaultColors from "../config/theme";
 
 import defaultStyles from "./styles";
 import { styles } from "./styles/TodosStyles";
+
 export default class Todos extends Component {
   static navigationOptions = {
     tabBarIcon: ({ tintColor }) => (
       <Icon name="list" style={{ color: tintColor }} />
     )
+  };
+  state = {
+    isChecked: false
   };
   render() {
     return (
@@ -44,8 +50,20 @@ export default class Todos extends Component {
           </Text>
 
           <View style={styles().todoContainer}>
-            <CheckBox style={{ width: 100, height: 100 }} value={true} />
-            <Text>dasda</Text>
+            <View>
+              <CheckBox
+                style={{ flex: 1 }}
+                onClick={() => {
+                  this.setState({
+                    isChecked: !this.state.isChecked
+                  });
+                }}
+                isChecked={this.state.isChecked}
+                checkedCheckBoxColor={defaultColors.secondary}
+                uncheckedCheckBoxColor={defaultColors.primary}
+                rightText={"/BLoodTrail"}
+              />
+            </View>
           </View>
         </View>
       </View>
