@@ -4,15 +4,20 @@ import { Icon } from "native-base";
 
 import { connect } from "react-redux";
 
-import Title from "../components/Title";
-
 import defaultColors from "../config/theme";
 import defaultStyles from "./styles";
 import { styles } from "./styles/TodosStyles";
 
+import Title from "../components/Title";
 import Spacer from "../components/Spacer";
 import DateBlock from "../components/DateBlock";
 import TodoLists from "../components/TodoLists";
+
+import BottomSheet from "./BottomSheet";
+
+import RBSheet from "react-native-raw-bottom-sheet";
+import DeviceInfo from "react-native-device-info";
+import utils from "../utils";
 
 class Todos extends Component {
   static navigationOptions = {
@@ -24,7 +29,7 @@ class Todos extends Component {
     return (
       <View style={defaultStyles.container}>
         <View style={defaultStyles.marginContainer}>
-          <Title isLarge={true}>Good evending,</Title>
+          <Title isLarge={true}>Good {utils.getGreetMessage()},</Title>
           <Title isLarge={true} isBold={true}>
             Test
           </Title>
@@ -50,6 +55,7 @@ class Todos extends Component {
           <Spacer />
           <Icon
             name="add-circle"
+            onPress={() => this.RBSheet.open()}
             style={{
               fontSize: 24,
               color: defaultColors.primary
@@ -65,6 +71,15 @@ class Todos extends Component {
             <View style={styles().todoFooter} />
           </ScrollView>
         </View>
+        <RBSheet
+          ref={ref => {
+            this.RBSheet = ref;
+          }}
+          height={DeviceInfo.hasNotch() ? 150 : 130} //130
+          closeOnDragDown
+        >
+          <BottomSheet />
+        </RBSheet>
       </View>
     );
   }
