@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { View, Text, ScrollView } from "react-native";
 import { Icon } from "native-base";
-import CheckBox from "react-native-check-box";
+import CheckBox from "../components/checkbox";
 import defaultColors from "../config/theme";
 
 import defaultStyles from "./styles";
@@ -65,8 +65,8 @@ export default class Todos extends Component {
                   isChecked={this.state.isChecked}
                   checkedCheckBoxColor={defaultColors.secondary}
                   uncheckedCheckBoxColor={defaultColors.primary}
-                  rightText={"BLoodTrail _ 12:42 pm"}
-                  rightTextStyle={
+                  text={"Sample Todo Text... _ 12:42 pm"}
+                  textStyle={
                     styles({ isActivated: this.state.isChecked }).todoLabel
                   }
                 />
