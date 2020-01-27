@@ -1,9 +1,10 @@
-import { StyleSheet, Platform } from "react-native";
+import { StyleSheet } from "react-native";
 import defaultColors from "../../config/theme";
+import DeviceInfo from "react-native-device-info";
 
 const defaultStyles = StyleSheet.create({
   container: {
-    paddingTop: Platform.OS === "ios" ? 40 : 0,
+    paddingTop: DeviceInfo.hasNotch() ? 40 : 0,
     flex: 1,
     backgroundColor: defaultColors.white
   },

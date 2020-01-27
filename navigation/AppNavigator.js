@@ -5,6 +5,7 @@ import defaultColors from "../config/theme";
 import { createAppContainer } from "react-navigation";
 import { createMaterialTopTabNavigator } from "react-navigation-tabs";
 
+import DeviceInfo from "react-native-device-info";
 import Profile from "../containers/Profile";
 import Todos from "../containers/Todos";
 
@@ -21,7 +22,7 @@ const TabNavigatorConfig = {
     style: {
       backgroundColor: defaultColors.white
     },
-    iconStyle: { height: 60 },
+    iconStyle: { height: DeviceInfo.hasNotch() ? 50 : 30 }, // 30 / 50
     activeTintColor: defaultColors.primary,
     inactiveTintColor: defaultColors.secondary,
     upperCaseLabel: false,
