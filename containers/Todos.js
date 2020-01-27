@@ -17,23 +17,27 @@ export default class Todos extends Component {
           <Text style={styles().headerText}>Good evening,</Text>
           <Text style={[styles().headerText, styles().boldText]}>Guest</Text>
         </View>
-        <ScrollView
-          horizontal={true}
-          style={[defaultStyles.marginContainer, styles().dateContainer]}
-        >
-          {[...Array(10)].map((x, i) => (
-            <View key={i * 124} style={styles().dateView}>
-              <View style={styles({ isActivated: i == 3 }).dateBlock}>
-                <Text style={styles().dateLabel}>{i}</Text>
+        <View>
+          <ScrollView
+            horizontal={true}
+            bounces={false}
+            showsHorizontalScrollIndicator={false}
+            style={[defaultStyles.marginContainer, styles().dateContainer]}
+          >
+            {[...Array(10)].map((x, i) => (
+              <View key={i * 124} style={styles().dateView}>
+                <View style={styles({ isActivated: i == 3 }).dateBlock}>
+                  <Text style={styles().dateLabel}>{i + 1}</Text>
+                </View>
+                <View style={styles().dateDescriptionBlock}>
+                  <Text style={styles({ isActivated: i == 3 }).dateDescription}>
+                    {i == 3 ? "Today" : "04/01"}
+                  </Text>
+                </View>
               </View>
-              <View style={styles().dateDescriptionBlock}>
-                <Text style={styles({ isActivated: i == 3 }).dateDescription}>
-                  Wed
-                </Text>
-              </View>
-            </View>
-          ))}
-        </ScrollView>
+            ))}
+          </ScrollView>
+        </View>
         <View style={defaultStyles.marginContainer}>
           <Text style={[styles().subHeaderText, styles().boldText]}>
             Today's tasks

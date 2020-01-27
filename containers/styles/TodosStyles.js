@@ -19,7 +19,8 @@ export const styles = (props = {}) =>
       fontWeight: "bold"
     },
     dateContainer: {
-      flexDirection: "row"
+      flexDirection: "row",
+      height: 55
     },
     dateView: {
       marginRight: 15
@@ -29,7 +30,7 @@ export const styles = (props = {}) =>
         ? defaultColors.primary
         : defaultColors.secondary,
       width: props.isActivated ? 45 : 40,
-      height: props.isActivated ? 45 : 40,
+      height: props.isActivated ? 25 : 20,
       marginVertical: props.isActivated ? 0 : 2.5,
       borderRadius: props.isActivated ? 10 : 20,
       justifyContent: "center", //Centered vertically
