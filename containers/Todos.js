@@ -9,6 +9,7 @@ import defaultColors from "../config/theme";
 import defaultStyles from "./styles";
 import { styles } from "./styles/TodosStyles";
 import Spacer from "../components/Spacer";
+import DateBlock from "../components/DateBlock";
 
 export default class Todos extends Component {
   static navigationOptions = {
@@ -27,7 +28,6 @@ export default class Todos extends Component {
           <Title isLarge={true} isBold={true}>
             SangEon
           </Title>
-
           <ScrollView
             horizontal={true}
             bounces={false}
@@ -35,16 +35,11 @@ export default class Todos extends Component {
             style={styles().dateContainer}
           >
             {[...Array(10)].map((x, i) => (
-              <View key={i * 124} style={styles().dateView}>
-                <View style={styles({ isActivated: i == 3 }).dateBlock}>
-                  <Text style={styles().dateLabel}>{i + 1}</Text>
-                </View>
-                <View style={styles().dateDescriptionBlock}>
-                  <Text style={styles({ isActivated: i == 3 }).dateDescription}>
-                    {i == 3 ? "Today" : "04/01"}
-                  </Text>
-                </View>
-              </View>
+              <DateBlock
+                taskCount={i * 3}
+                date={`1/${i + 20}`}
+                isActivated={i == 3}
+              ></DateBlock>
             ))}
           </ScrollView>
         </View>
@@ -67,6 +62,7 @@ export default class Todos extends Component {
             style={styles().todoWrapper}
           >
             {[...Array(10)].map((x, i) => (
+              /* TODO: Replace with component */
               <View style={[styles().todoContainer, styles().boxshadow]}>
                 <CheckBox
                   style={styles().todo}
