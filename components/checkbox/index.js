@@ -49,6 +49,7 @@ export default class CheckBox extends Component {
 
   renderText() {
     if (!this.props.text) return null;
+
     return (
       <Text style={[styles.text, this.props.textStyle]}>{this.props.text}</Text>
     );
@@ -100,6 +101,6 @@ const styles = StyleSheet.create({
   },
   text: {
     flex: 1,
-    marginLeft: 7
+    marginLeft: 13
   }
 });

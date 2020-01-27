@@ -1,24 +1,24 @@
 import React, { Component } from "react";
-import { View, Text, ScrollView } from "react-native";
+import { View, ScrollView } from "react-native";
 import { Icon } from "native-base";
 
-import CheckBox from "../components/CheckBox";
+import { connect } from "react-redux";
+
 import Title from "../components/Title";
 
 import defaultColors from "../config/theme";
 import defaultStyles from "./styles";
 import { styles } from "./styles/TodosStyles";
+
 import Spacer from "../components/Spacer";
 import DateBlock from "../components/DateBlock";
+import TodoLists from "../components/TodoLists";
 
-export default class Todos extends Component {
+class Todos extends Component {
   static navigationOptions = {
     tabBarIcon: ({ tintColor }) => (
       <Icon name="list" style={{ color: tintColor }} />
     )
-  };
-  state = {
-    isChecked: false
   };
   render() {
     return (
@@ -61,30 +61,7 @@ export default class Todos extends Component {
             showsVerticalScrollIndicator={false}
             style={styles().todoWrapper}
           >
-            {[...Array(10)].map((x, i) => (
-              /* TODO: Replace with component */
-              <View style={[styles().todoContainer, styles().boxshadow]}>
-                <CheckBox
-                  style={styles().todo}
-                  onClick={() => {
-                    this.setState({
-                      isChecked: !this.state.isChecked
-                    });
-                  }}
-                  onLongClick={() => {
-                    alert("LONG CLICK MENU!");
-                  }}
-                  isChecked={this.state.isChecked}
-                  underlayColor={defaultColors.fullwhite + "77"}
-                  checkedCheckBoxColor={defaultColors.secondary}
-                  uncheckedCheckBoxColor={defaultColors.primary}
-                  text={"Sample Todo Text... _ 12:42 pm"}
-                  textStyle={
-                    styles({ isActivated: this.state.isChecked }).todoLabel
-                  }
-                />
-              </View>
-            ))}
+            <TodoLists data={this.props.value} />
             <View style={styles().todoFooter} />
           </ScrollView>
         </View>
@@ -92,3 +69,13 @@ export default class Todos extends Component {
     );
   }
 }
+
+let mapStateToProps = state => {
+  return {
+    value: state.data
+  };
+};
+
+Todos = connect(mapStateToProps)(Todos);
+
+export default Todos;

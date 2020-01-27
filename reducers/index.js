@@ -10,6 +10,13 @@ const initialState = {
       createdAt: 1580128085,
       willFinish: 1580129085,
       completed: false
+    },
+    {
+      id: Utils.randomStringGenerator(10),
+      title: "Finish make to!",
+      createdAt: 1580129085,
+      willFinish: 1580130085,
+      completed: false
     }
   ]
 };
