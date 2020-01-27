@@ -1,7 +1,8 @@
 const defaultColors = {
   primary: "#012345",
   secondary: "#d1cece",
-  white: "#fff",
+  fullwhite: "#FFF",
+  white: "#efefef",
   dark: "#000"
 };
 

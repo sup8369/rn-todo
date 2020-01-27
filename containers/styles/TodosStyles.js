@@ -19,6 +19,7 @@ export const styles = (props = {}) =>
       fontWeight: "bold"
     },
     dateContainer: {
+      marginTop: 30,
       flexDirection: "row",
       height: 55
     },
@@ -49,5 +50,35 @@ export const styles = (props = {}) =>
     todoContainer: {
       flexDirection: "row",
       paddingTop: 19
+    },
+    todoWrapper: {
+      flexDirection: "column",
+      flex: 0,
+      marginTop: 10
+    },
+    todo: {
+      flex: 1,
+      borderRadius: 10,
+      padding: 10,
+      marginHorizontal: 10,
+      backgroundColor: defaultColors.fullwhite
+    },
+    todoFooter: {
+      flex: 1,
+      padding: 140
+    },
+    todoLabel: {
+      flexDirection: "row",
+      color: props.isActivated ? defaultColors.secondary : defaultColors.primary
+    },
+    boxshadow: {
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 2
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 3.84,
+      elevation: 5
     }
   });

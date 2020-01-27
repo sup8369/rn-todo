@@ -22,13 +22,12 @@ export default class Todos extends Component {
         <View style={defaultStyles.marginContainer}>
           <Text style={styles().headerText}>Good evening,</Text>
           <Text style={[styles().headerText, styles().boldText]}>Guest</Text>
-        </View>
-        <View>
+
           <ScrollView
             horizontal={true}
             bounces={false}
             showsHorizontalScrollIndicator={false}
-            style={[defaultStyles.marginContainer, styles().dateContainer]}
+            style={styles().dateContainer}
           >
             {[...Array(10)].map((x, i) => (
               <View key={i * 124} style={styles().dateView}>
@@ -46,25 +45,35 @@ export default class Todos extends Component {
         </View>
         <View style={defaultStyles.marginContainer}>
           <Text style={[styles().subHeaderText, styles().boldText]}>
-            Today's tasks
+            {true == false ? "Today's tasks" : "List of tasks,  01/27"}
           </Text>
-
-          <View style={styles().todoContainer}>
-            <View>
-              <CheckBox
-                style={{ flex: 1 }}
-                onClick={() => {
-                  this.setState({
-                    isChecked: !this.state.isChecked
-                  });
-                }}
-                isChecked={this.state.isChecked}
-                checkedCheckBoxColor={defaultColors.secondary}
-                uncheckedCheckBoxColor={defaultColors.primary}
-                rightText={"/BLoodTrail"}
-              />
-            </View>
-          </View>
+        </View>
+        <View style={defaultStyles.shadowSupportMarginContainer}>
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            style={styles().todoWrapper}
+          >
+            {[...Array(10)].map((x, i) => (
+              <View style={[styles().todoContainer, styles().boxshadow]}>
+                <CheckBox
+                  style={styles().todo}
+                  onClick={() => {
+                    this.setState({
+                      isChecked: !this.state.isChecked
+                    });
+                  }}
+                  isChecked={this.state.isChecked}
+                  checkedCheckBoxColor={defaultColors.secondary}
+                  uncheckedCheckBoxColor={defaultColors.primary}
+                  rightText={"BLoodTrail _ 12:42 pm"}
+                  rightTextStyle={
+                    styles({ isActivated: this.state.isChecked }).todoLabel
+                  }
+                />
+              </View>
+            ))}
+            <View style={styles().todoFooter} />
+          </ScrollView>
         </View>
       </View>
     );

@@ -11,6 +11,9 @@ const defaultStyles = StyleSheet.create({
     margin: 30,
     marginBottom: 0
   },
+  shadowSupportMarginContainer: {
+    marginHorizontal: 20
+  },
   rowLeft: {
     flex: 1,
     flexDirection: "row",
