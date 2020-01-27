@@ -1,11 +1,20 @@
 import React, { Component } from "react";
 import AppNavigator from "./navigation/AppNavigator";
 
+import AsyncStorage from "@react-native-community/async-storage";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
+import { persistStore, persistReducer } from "redux-persist";
+
 import todoReducer from "./reducers";
 
-let store = createStore(todoReducer);
+const persistConfig = {
+  key: "root",
+  storage: AsyncStorage
+};
+
+const persistedReducer = persistReducer(persistConfig, todoReducer);
+let store = createStore(persistedReducer);
 
 class App extends Component {
   render() {
