@@ -8,6 +8,7 @@ import Title from "../components/Title";
 import defaultColors from "../config/theme";
 import defaultStyles from "./styles";
 import { styles } from "./styles/TodosStyles";
+import Spacer from "../components/Spacer";
 
 export default class Todos extends Component {
   static navigationOptions = {
@@ -47,10 +48,18 @@ export default class Todos extends Component {
             ))}
           </ScrollView>
         </View>
-        <View style={defaultStyles.marginContainer}>
+        <View style={[defaultStyles.marginContainer, styles().todoTitle]}>
           <Title isBold={true}>
-            {true == true ? "Today's tasks" : "List of tasks,  01/27"}
+            {true == false ? "Today, 30 Tasks" : "Next 7 Days,  10 Tasks."}
           </Title>
+          <Spacer />
+          <Icon
+            name="add-circle"
+            style={{
+              fontSize: 24,
+              color: defaultColors.primary
+            }}
+          />
         </View>
         <View style={defaultStyles.shadowSupportMarginContainer}>
           <ScrollView

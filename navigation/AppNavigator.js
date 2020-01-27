@@ -6,12 +6,10 @@ import { createAppContainer } from "react-navigation";
 import { createMaterialTopTabNavigator } from "react-navigation-tabs";
 
 import Profile from "../containers/Profile";
-import AddTodo from "../containers/AddTodo";
 import Todos from "../containers/Todos";
 
 const RouteConfigs = {
   TodosTab: { screen: Todos },
-  AddTodo: { screen: AddTodo },
   ProfileTab: { screen: Profile }
 };
 

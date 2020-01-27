@@ -14,24 +14,6 @@ const defaultStyles = StyleSheet.create({
   shadowSupportMarginContainer: {
     marginHorizontal: 20
   },
-  rowLeft: {
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    alignItems: "center",
-    paddingLeft: 20,
-    paddingRight: 20,
-    backgroundColor: "green"
-  },
-  rowRight: {
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "flex-end",
-    alignItems: "center",
-    paddingLeft: 20,
-    paddingRight: 20,
-    backgroundColor: "#FE4D33"
-  },
   icon: {
     color: "white"
   },

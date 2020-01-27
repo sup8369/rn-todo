@@ -1,10 +1,5 @@
 import React, { Component } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  ViewPropTypes as RNViewPropTypes
-} from "react-native";
+import { Text, View, ViewPropTypes as RNViewPropTypes } from "react-native";
 import PropTypes from "prop-types";
 import defaultColors from "../../config/theme";
 const ViewPropTypes = RNViewPropTypes || View.propTypes;
@@ -33,7 +28,6 @@ export default class Title extends Component {
     return (
       <Text
         style={[
-          styles.text,
           {
             fontWeight: this.props.isBold ? "bold" : "normal",
             fontSize: this.props.isLarge ? 30 : 22,
@@ -47,15 +41,6 @@ export default class Title extends Component {
   }
 
   render() {
-    return <View style={styles.container}>{this.renderText()}</View>;
+    return <View>{this.renderText()}</View>;
   }
 }
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: "row",
-    justifyContent: "center"
-  },
-  text: {
-    flex: 1
-  }
-});

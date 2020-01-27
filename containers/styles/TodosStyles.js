@@ -18,6 +18,9 @@ export const styles = (props = {}) =>
     boldText: {
       fontWeight: "bold"
     },
+    todoTitle: {
+      flexDirection: "row"
+    },
     dateContainer: {
       marginTop: 30,
       flexDirection: "row",
@@ -54,7 +57,7 @@ export const styles = (props = {}) =>
     todoWrapper: {
       flexDirection: "column",
       flex: 0,
-      marginTop: 10
+      marginTop: 15
     },
     todo: {
       flex: 1,
