@@ -10,7 +10,6 @@ import { styles } from "./styles/TodosStyles";
 
 import Title from "../components/Title";
 import Spacer from "../components/Spacer";
-import DateBlock from "../components/DateBlock";
 import TodoLists from "../components/TodoLists";
 
 import BottomSheet from "./BottomSheet";
@@ -18,6 +17,7 @@ import BottomSheet from "./BottomSheet";
 import RBSheet from "react-native-raw-bottom-sheet";
 import DeviceInfo from "react-native-device-info";
 import utils from "../utils";
+import DateLists from "../components/DateList";
 
 class Todos extends Component {
   static navigationOptions = {
@@ -31,7 +31,7 @@ class Todos extends Component {
         <View style={defaultStyles.marginContainer}>
           <Title isLarge={true}>Good {utils.getGreetMessage()},</Title>
           <Title isLarge={true} isBold={true}>
-            Test
+            Guest
           </Title>
           <ScrollView
             horizontal={true}
@@ -39,18 +39,12 @@ class Todos extends Component {
             showsHorizontalScrollIndicator={false}
             style={styles().dateContainer}
           >
-            {[...Array(10)].map((x, i) => (
-              <DateBlock
-                taskCount={i * 3}
-                date={`1/${i + 20}`}
-                isActivated={i == 3}
-              ></DateBlock>
-            ))}
+            <DateLists></DateLists>
           </ScrollView>
         </View>
         <View style={[defaultStyles.marginContainer, styles().todoTitle]}>
           <Title isBold={true}>
-            {true == false ? "Today, 30 Tasks" : "Next 7 Days,  10 Tasks."}
+            {`Today, ${this.props.todos.length} Tasks`}
           </Title>
           <Spacer />
           <Icon
