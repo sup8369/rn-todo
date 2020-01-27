@@ -4,7 +4,7 @@ import AppNavigator from "./navigation/AppNavigator";
 import AsyncStorage from "@react-native-community/async-storage";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
-import { persistStore, persistReducer } from "redux-persist";
+import { persistReducer } from "redux-persist";
 
 import todoReducer from "./reducers";
 

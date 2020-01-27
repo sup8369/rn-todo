@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import {
   View,
-  Text,
   StyleSheet,
   ViewPropTypes as RNViewPropTypes
 } from "react-native";
 import PropTypes from "prop-types";
 import TodoItem from "../TodoItem";
+import { connect } from "react-redux";
+import { completeTodo } from "../../actions";
 const ViewPropTypes = RNViewPropTypes || View.propTypes;
 
 class TodoLists extends Component {
@@ -37,7 +38,10 @@ class TodoLists extends Component {
             <TodoItem
               key={todo.id}
               title={`${todo.title}\n- ${dateString}`}
-              onClick={() => {}}
+              isChecked={todo.completed}
+              onClick={() => {
+                this.props.completeTodo(todo.id);
+              }}
               onLongClick={() => {}}
             />
           );
@@ -47,14 +51,16 @@ class TodoLists extends Component {
   }
 }
 let mapDispatchToProps = dispatch => {
-  return {};
+  return {
+    completeTodo: id => dispatch(completeTodo(id))
+  };
 };
 
-TodoLists = connect(undefined, mapDispatchToProps);
+TodoLists = connect(undefined, mapDispatchToProps)(TodoLists);
 
 export default TodoLists;
 
-const styles = (props = {}) =>
+const styles = () =>
   StyleSheet.create({
     todoContainer: {
       flexDirection: "column",

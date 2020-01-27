@@ -21,7 +21,7 @@ const initialState = {
   ]
 };
 
-export default function todos(state = initialState, action) {
+export default function todos(state = initialState, action, id) {
   switch (action.type) {
     case ADD_TODO:
       return Object.assign({}, state, {

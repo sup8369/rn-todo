@@ -26,7 +26,7 @@ class Todos extends Component {
         <View style={defaultStyles.marginContainer}>
           <Title isLarge={true}>Good evending,</Title>
           <Title isLarge={true} isBold={true}>
-            SangEon
+            Test
           </Title>
           <ScrollView
             horizontal={true}
@@ -61,7 +61,7 @@ class Todos extends Component {
             showsVerticalScrollIndicator={false}
             style={styles().todoWrapper}
           >
-            <TodoLists data={this.props.value} />
+            <TodoLists data={this.props.todos} />
             <View style={styles().todoFooter} />
           </ScrollView>
         </View>
@@ -72,7 +72,7 @@ class Todos extends Component {
 
 let mapStateToProps = state => {
   return {
-    value: state.data
+    todos: state.data
   };
 };
 
