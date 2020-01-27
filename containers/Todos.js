@@ -44,7 +44,12 @@ class Todos extends Component {
         </View>
         <View style={[defaultStyles.marginContainer, styles().todoTitle]}>
           <Title isBold={true}>
-            {`Today, ${this.props.todos.length} Tasks`}
+            {(() => {
+              let taskCount = this.props.todos.filter(x => !x.completed).length;
+              return `Today, ${taskCount < 1 ? "no" : taskCount} task${
+                taskCount > 1 ? "s" : ""
+              } remain`;
+            })()}
           </Title>
           <Spacer />
           <Icon
