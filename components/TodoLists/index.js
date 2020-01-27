@@ -8,6 +8,7 @@ import PropTypes from "prop-types";
 import TodoItem from "../TodoItem";
 import { connect } from "react-redux";
 import { completeTodo } from "../../actions";
+import utils from "../../utils";
 const ViewPropTypes = RNViewPropTypes || View.propTypes;
 
 class TodoLists extends Component {
@@ -27,12 +28,7 @@ class TodoLists extends Component {
     return (
       <View style={[styles().todoContainer, styles().boxshadow]}>
         {this.props.data.map(todo => {
-          const date = new Date(todo.willFinish * 1000.0);
-          const dayMonth = date.toDateString().split(" ");
-          const ampm = date.getHours() >= 12 ? "pm" : "am";
-          const minute = date.getMinutes();
-          const dateString = `${dayMonth[1]} ${dayMonth[2]} ${date.getHours() %
-            12 || 12}:${minute < 10 ? "0" : ""}${minute}${ampm}`;
+          const dateString = utils.timestampToUsable(todo.willFinish);
 
           return (
             <TodoItem
