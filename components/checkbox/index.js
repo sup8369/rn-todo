@@ -27,6 +27,7 @@ export default class CheckBox extends Component {
     underlayColor: PropTypes.string,
     onClick: PropTypes.func.isRequired,
     onLongClick: PropTypes.func.isRequired,
+    isSquare: PropTypes.bool,
     isChecked: PropTypes.bool.isRequired,
     checkedCheckBoxColor: PropTypes.string,
     uncheckedCheckBoxColor: PropTypes.string
@@ -34,6 +35,7 @@ export default class CheckBox extends Component {
 
   static defaultProps = {
     isChecked: false,
+    isSquare: false,
     underlayColor: "transparent",
     textStyle: {}
   };
@@ -56,11 +58,17 @@ export default class CheckBox extends Component {
     return (
       <Image
         source={
-          this.props.isChecked
-            ? require("./img/ic_check_box.png")
-            : require("./img/ic_check_box_outline_blank.png")
+          this.props.isSquare
+            ? this.props.isChecked
+              ? require("./img/ic_check_box.png")
+              : require("./img/ic_check_box_outline_blank.png")
+            : this.props.isChecked
+            ? require("./img/circle.png")
+            : require("./img/blank-circle.png")
         }
         style={{
+          height: 24,
+          width: 24,
           tintColor: this.props.isChecked
             ? this.props.checkedCheckBoxColor
             : this.props.uncheckedCheckBoxColor

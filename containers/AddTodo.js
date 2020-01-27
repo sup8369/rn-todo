@@ -1,6 +1,13 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import { Icon } from "native-base";
+
+import CheckBox from "../components/CheckBox";
+import Title from "../components/Title";
+
+import defaultColors from "../config/theme";
+import defaultStyles from "./styles";
+import { styles } from "./styles/TodosStyles";
 
 export default class AddTodo extends Component {
   static navigationOptions = {
@@ -8,19 +15,16 @@ export default class AddTodo extends Component {
       <Icon name="ios-add-circle" style={{ color: tintColor }} />
     )
   };
+  state = {
+    isChecked: false
+  };
   render() {
     return (
-      <View style={style.container}>
-        <Text>AddMediaTab</Text>
+      <View style={defaultStyles.container}>
+        <View style={defaultStyles.marginContainer}>
+          <Title isBold={true}>Add Todo</Title>
+        </View>
       </View>
     );
   }
 }
-
-const style = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center"
-  }
-});
