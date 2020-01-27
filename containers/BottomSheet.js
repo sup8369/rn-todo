@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { View, StyleSheet, TextInput } from "react-native";
 
 import { connect } from "react-redux";
-import { completeTodo } from "../actions";
+import { addTodo } from "../actions";
 import defaultColors from "../config/theme";
 import { Icon } from "native-base";
 import Spacer from "../components/Spacer";
@@ -52,6 +52,10 @@ class BottomSheet extends Component {
           <Spacer />
           <Icon
             name="add-circle"
+            onPress={() => {
+              alert(this.state.date);
+              this.props.addTodo(this.state.todoTitle, this.state.date);
+            }}
             style={{
               lineHeight: 34,
               fontSize: 34,
@@ -68,7 +72,7 @@ class BottomSheet extends Component {
 }
 let mapDispatchToProps = dispatch => {
   return {
-    completeTodo: id => dispatch(completeTodo(id))
+    addTodo: (title, date) => dispatch(addTodo(title, new Date(date).getTime()))
   };
 };
 
