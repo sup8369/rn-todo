@@ -74,7 +74,7 @@ export default class CheckBox extends Component {
       <TouchableHighlight
         style={this.props.style}
         onPress={() => this.onClick()}
-        onLongPress={() => this.onLongPress}
+        onLongPress={() => this.onLongClick()}
         underlayColor={this.props.underlayColor}
       >
         <View style={styles.container}>
