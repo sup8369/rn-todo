@@ -12,7 +12,7 @@ import Title from "../components/Title";
 import Spacer from "../components/Spacer";
 import TodoLists from "../components/TodoLists";
 
-import BottomSheet from "./BottomSheet";
+import AddTodo from "./AddTodo";
 
 import RBSheet from "react-native-raw-bottom-sheet";
 import DeviceInfo from "react-native-device-info";
@@ -24,6 +24,10 @@ class Todos extends Component {
     tabBarIcon: ({ tintColor }) => (
       <Icon name="list" style={{ color: tintColor }} />
     )
+  };
+
+  closeBottomSheet = () => {
+    this.RBSheet.close();
   };
   render() {
     return (
@@ -77,7 +81,7 @@ class Todos extends Component {
           height={DeviceInfo.hasNotch() ? 150 : 130} //130
           closeOnDragDown
         >
-          <BottomSheet />
+          <AddTodo closeFunc={this.closeBottomSheet} />
         </RBSheet>
       </View>
     );

@@ -1,5 +1,10 @@
 import React, { Component } from "react";
-import { View, StyleSheet, TextInput } from "react-native";
+import {
+  View,
+  StyleSheet,
+  TextInput,
+  ViewPropTypes as RNViewPropTypes
+} from "react-native";
 
 import { connect } from "react-redux";
 import { addTodo } from "../actions";
@@ -7,12 +12,18 @@ import defaultColors from "../config/theme";
 import { Icon } from "native-base";
 import Spacer from "../components/Spacer";
 import DatePicker from "react-native-datepicker";
+import PropTypes from "prop-types";
+const ViewPropTypes = RNViewPropTypes || View.propTypes;
 
-class BottomSheet extends Component {
+class AddTodo extends Component {
   constructor(props) {
     super(props);
     this.state = { date: null, todoTitle: null };
   }
+  static propTypes = {
+    ...ViewPropTypes,
+    closeFunc: PropTypes.func
+  };
   onChangeText = text => {
     this.setState({ todoTitle: text });
   };
@@ -53,7 +64,8 @@ class BottomSheet extends Component {
           <Icon
             name="add-circle"
             onPress={() => {
-              alert(this.state.date);
+              if (!this.state.date || !this.state.todoTitle) return;
+              this.props.closeFunc();
               this.props.addTodo(this.state.todoTitle, this.state.date);
             }}
             style={{
@@ -76,9 +88,9 @@ let mapDispatchToProps = dispatch => {
   };
 };
 
-BottomSheet = connect(undefined, mapDispatchToProps)(BottomSheet);
+AddTodo = connect(undefined, mapDispatchToProps)(AddTodo);
 
-export default BottomSheet;
+export default AddTodo;
 
 const styles = () =>
   StyleSheet.create({
