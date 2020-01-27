@@ -9,10 +9,8 @@ const randomStringGenerator = len => {
 };
 
 const timestampToDate = date => {
-  var dt = new Date();
-  dt.setHours(hour ? hour : dt.getHours() + 1);
-  dt.setMinutes(0);
-  return dt.getTime();
+  var date = new Date(date);
+  return date.getTime();
 };
 
 export default { randomStringGenerator, timestampToDate };

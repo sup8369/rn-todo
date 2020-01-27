@@ -20,9 +20,10 @@ export default function todos(state = initialState, action) {
       return Object.assign({}, state, {
         data: [
           {
-            id: Utils.GUID(),
+            id: Utils.randomStringGenerator(10),
             title: action.title,
-            endTime: getEndTime(action.hour),
+            createdAt: new Date().getTime(),
+            endTime: Utils.timestampToDate(action.date),
             completed: false
           },
           ...state.data
@@ -40,7 +41,7 @@ export default function todos(state = initialState, action) {
           todo.id === action.id
             ? Object.assign({}, todo, {
                 title: action.title,
-                endTime: getEndTime(action.hour)
+                willFinish: getEndTime(action.date)
               })
             : todo
         )
@@ -49,11 +50,9 @@ export default function todos(state = initialState, action) {
     case COMPLETE_TODO:
       return Object.assign({}, state, {
         data: state.data.map(todo => {
-          var now = new Date().getTime();
-          if (todo.id === action.id && new Date(todo.endTime).getTime() - now) {
+          if (todo.id === action.id) {
             return Object.assign({}, todo, {
-              completed: !todo.completed,
-              completedTime: now
+              completed: !todo.completed
             });
           }
           return todo;
