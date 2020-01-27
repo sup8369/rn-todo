@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import { View, Text, ScrollView } from "react-native";
 import { Icon } from "native-base";
-import CheckBox from "../components/checkbox";
-import defaultColors from "../config/theme";
 
+import CheckBox from "../components/CheckBox";
+import Title from "../components/Title";
+
+import defaultColors from "../config/theme";
 import defaultStyles from "./styles";
 import { styles } from "./styles/TodosStyles";
 
@@ -20,8 +22,10 @@ export default class Todos extends Component {
     return (
       <View style={defaultStyles.container}>
         <View style={defaultStyles.marginContainer}>
-          <Text style={styles().headerText}>Good evening,</Text>
-          <Text style={[styles().headerText, styles().boldText]}>SangEon</Text>
+          <Title isLarge={true}>Good evending,</Title>
+          <Title isLarge={true} isBold={true}>
+            SangEon
+          </Title>
 
           <ScrollView
             horizontal={true}
@@ -44,9 +48,9 @@ export default class Todos extends Component {
           </ScrollView>
         </View>
         <View style={defaultStyles.marginContainer}>
-          <Text style={[styles().subHeaderText, styles().boldText]}>
+          <Title isBold={true}>
             {true == true ? "Today's tasks" : "List of tasks,  01/27"}
-          </Text>
+          </Title>
         </View>
         <View style={defaultStyles.shadowSupportMarginContainer}>
           <ScrollView
