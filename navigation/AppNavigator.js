@@ -6,17 +6,17 @@ import { createAppContainer } from "react-navigation";
 import { createMaterialTopTabNavigator } from "react-navigation-tabs";
 
 import DeviceInfo from "react-native-device-info";
-import Profile from "../containers/Profile";
+import Settings from "../containers/Settings";
 import Todos from "../containers/Todos";
 
 const RouteConfigs = {
   TodosTab: { screen: Todos },
-  ProfileTab: { screen: Profile }
+  ProfileTab: { screen: Settings }
 };
 
 const TabNavigatorConfig = {
   animationEnabled: true,
-  swipeEnabled: false,
+  swipeEnabled: true,
   tabBarPosition: "bottom",
   tabBarOptions: {
     style: {
