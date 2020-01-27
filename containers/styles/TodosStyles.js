@@ -69,7 +69,10 @@ export const styles = (props = {}) =>
     },
     todoLabel: {
       flexDirection: "row",
-      color: props.isActivated ? defaultColors.secondary : defaultColors.primary
+      color: props.isActivated
+        ? defaultColors.secondary
+        : defaultColors.primary,
+      textDecorationLine: props.isActivated ? "line-through" : "none"
     },
     boxshadow: {
       shadowColor: "#000",

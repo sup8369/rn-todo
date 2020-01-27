@@ -21,7 +21,7 @@ export default class Todos extends Component {
       <View style={defaultStyles.container}>
         <View style={defaultStyles.marginContainer}>
           <Text style={styles().headerText}>Good evening,</Text>
-          <Text style={[styles().headerText, styles().boldText]}>Guest</Text>
+          <Text style={[styles().headerText, styles().boldText]}>SangEon</Text>
 
           <ScrollView
             horizontal={true}
@@ -45,7 +45,7 @@ export default class Todos extends Component {
         </View>
         <View style={defaultStyles.marginContainer}>
           <Text style={[styles().subHeaderText, styles().boldText]}>
-            {true == false ? "Today's tasks" : "List of tasks,  01/27"}
+            {true == true ? "Today's tasks" : "List of tasks,  01/27"}
           </Text>
         </View>
         <View style={defaultStyles.shadowSupportMarginContainer}>
@@ -62,7 +62,11 @@ export default class Todos extends Component {
                       isChecked: !this.state.isChecked
                     });
                   }}
+                  onLongClick={() => {
+                    alert("LONG CLICK MENU!");
+                  }}
                   isChecked={this.state.isChecked}
+                  underlayColor={defaultColors.fullwhite + "77"}
                   checkedCheckBoxColor={defaultColors.secondary}
                   uncheckedCheckBoxColor={defaultColors.primary}
                   text={"Sample Todo Text... _ 12:42 pm"}
