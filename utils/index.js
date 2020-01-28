@@ -8,7 +8,7 @@ const randomStringGenerator = len => {
   return result;
 };
 
-const timestampToDate = timestamp => {
+const dateToTimestamp = timestamp => {
   var date = new Date(timestamp);
   return date.getTime();
 };
@@ -40,7 +40,7 @@ const getGreetMessage = () => {
 };
 export default {
   randomStringGenerator,
-  timestampToDate,
+  dateToTimestamp,
   timestampToUsable,
   getGreetMessage
 };

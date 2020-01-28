@@ -30,7 +30,7 @@ export default function todos(state = initialState, action) {
             id: Utils.randomStringGenerator(10),
             title: action.title,
             createdAt: new Date().getTime(),
-            willFinish: Utils.timestampToDate(action.date),
+            willFinish: Utils.dateToTimestamp(action.date),
             completed: false
           },
           ...state.data
@@ -48,7 +48,7 @@ export default function todos(state = initialState, action) {
           todo.id === action.id
             ? Object.assign({}, todo, {
                 title: action.title,
-                willFinish: getEndTime(action.date)
+                willFinish: Utils.dateToTimestamp(action.date)
               })
             : todo
         )

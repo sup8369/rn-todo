@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import {
   View,
   StyleSheet,
+  Alert,
   ViewPropTypes as RNViewPropTypes
 } from "react-native";
 import PropTypes from "prop-types";
@@ -9,6 +10,9 @@ import TodoItem from "../TodoItem";
 import { connect } from "react-redux";
 import { completeTodo, deleteTodo } from "../../actions";
 import utils from "../../utils";
+import RBSheet from "react-native-raw-bottom-sheet";
+import TodoEditor from "../TodoEditor";
+import DeviceInfo from "react-native-device-info";
 const ViewPropTypes = RNViewPropTypes || View.propTypes;
 
 class TodoLists extends Component {
@@ -16,6 +20,9 @@ class TodoLists extends Component {
     super(props);
   }
 
+  state = {
+    lastSelected: {}
+  };
   static propTypes = {
     ...ViewPropTypes,
     data: PropTypes.array
@@ -23,7 +30,43 @@ class TodoLists extends Component {
   static defaultProps = {
     data: []
   };
-
+  openBottomSheet = () => {
+    this.RBSheet.open();
+  };
+  closeBottomSheet = () => {
+    this.RBSheet.close();
+  };
+  alertControl = (id, title, date) => {
+    Alert.alert(
+      title,
+      utils.timestampToUsable(date),
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+        {
+          text: "Delete Task",
+          onPress: () => this.props.deleteTodo(id)
+        },
+        {
+          text: "Edit Task",
+          onPress: () => {
+            this.setState({
+              lastSelected: {
+                title: title,
+                id: id,
+                date: date
+              }
+            });
+            this.openBottomSheet();
+          }
+        }
+      ],
+      { cancelable: true }
+    );
+  };
   render() {
     return (
       <View style={[styles().todoContainer, styles().boxshadow]}>
@@ -36,15 +79,29 @@ class TodoLists extends Component {
               title={`${todo.title}\n- ${dateString}`}
               isChecked={todo.completed}
               onClick={() => {
-                alert(todo.willFinish);
                 this.props.completeTodo(todo.id);
               }}
               onLongClick={() => {
-                this.props.deleteTodo(todo.id);
+                this.alertControl(todo.id, todo.title, todo.willFinish);
               }}
             />
           );
         })}
+        <RBSheet
+          ref={ref => {
+            this.RBSheet = ref;
+          }}
+          height={DeviceInfo.hasNotch() ? 140 : 130} //130
+          closeOnDragDown
+        >
+          <TodoEditor
+            closeFunc={this.closeBottomSheet}
+            isEditMode={true}
+            title={this.state.lastSelected.title}
+            id={this.state.lastSelected.id}
+            date={this.state.lastSelected.date}
+          />
+        </RBSheet>
       </View>
     );
   }

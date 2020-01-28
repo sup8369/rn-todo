@@ -7,7 +7,7 @@ import {
 } from "react-native";
 
 import { connect } from "react-redux";
-import { addTodo } from "../../actions";
+import { addTodo, editTodo } from "../../actions";
 import defaultColors from "../../config/theme";
 import { Icon } from "native-base";
 import Spacer from "../Spacer";
@@ -18,7 +18,11 @@ const ViewPropTypes = RNViewPropTypes || View.propTypes;
 class TodoEditor extends Component {
   constructor(props) {
     super(props);
-    this.state = { date: null, todoTitle: null };
+    this.state = {
+      date: this.props.isEditMode ? new Date(this.props.date) : null,
+      todoTitle: this.props.isEditMode ? this.props.title : null,
+      id: this.props.isEditMode ? this.props.id : null
+    };
   }
   static propTypes = {
     ...ViewPropTypes,
@@ -41,6 +45,7 @@ class TodoEditor extends Component {
           editable
           selectionColor={defaultColors.primary}
           maxLength={40}
+          defaultValue={this.state.todoTitle}
           onChangeText={text => this.onChangeText(text)}
         ></TextInput>
         <View style={styles().footerContainer}>
@@ -49,7 +54,8 @@ class TodoEditor extends Component {
             date={this.state.date}
             mode="datetime"
             placeholder="Select a date"
-            format="YYYY-MM-DDThh:mm:ssZ"
+            format="YYYY-MM-DDThh:mm:00Z"
+            minDate={new Date()}
             confirmBtnText="Confirm"
             cancelBtnText="Cancel"
             showIcon={false}
@@ -66,11 +72,17 @@ class TodoEditor extends Component {
           />
           <Spacer />
           <Icon
-            name="add-circle"
+            name={this.props.isEditMode ? "checkmark-circle" : "add-circle"}
             onPress={() => {
               if (!this.state.date || !this.state.todoTitle) return;
               this.props.closeFunc();
-              this.props.addTodo(this.state.todoTitle, this.state.date);
+              this.props.isEditMode
+                ? this.props.editTodo(
+                    this.state.id,
+                    this.state.todoTitle,
+                    this.state.date
+                  )
+                : this.props.addTodo(this.state.todoTitle, this.state.date);
             }}
             style={{
               lineHeight: 34,
@@ -89,8 +101,10 @@ class TodoEditor extends Component {
 let mapDispatchToProps = dispatch => {
   return {
     addTodo: (title, date) => {
-      alert(new Date(date));
       dispatch(addTodo(title, new Date(date).getTime()));
+    },
+    editTodo: (id, title, date) => {
+      dispatch(editTodo(id, title, new Date(date).getTime()));
     }
   };
 };
