@@ -20,11 +20,13 @@ export default class TodoItem extends Component {
     onClick: PropTypes.func.isRequired,
     onLongClick: PropTypes.func.isRequired,
     title: PropTypes.string,
-    isChecked: PropTypes.bool
+    isChecked: PropTypes.bool,
+    isBlured: PropTypes.bool
   };
   static defaultProps = {
     title: "N/A",
-    isChecked: false
+    isChecked: false,
+    isBlured: false
   };
 
   render() {
@@ -36,9 +38,16 @@ export default class TodoItem extends Component {
         isChecked={this.props.isChecked}
         underlayColor={defaultColors.fullwhite + "77"}
         checkedCheckBoxColor={defaultColors.secondary}
-        uncheckedCheckBoxColor={defaultColors.primary}
+        uncheckedCheckBoxColor={
+          this.props.isBlured ? defaultColors.error : defaultColors.primary
+        }
         text={this.props.title}
-        textStyle={styles({ isActivated: this.props.isChecked }).todoLabel}
+        textStyle={
+          styles({
+            isBlured: this.props.isBlured,
+            isActivated: this.props.isChecked
+          }).todoLabel
+        }
       />
     );
   }
@@ -58,6 +67,8 @@ const styles = (props = {}) =>
       lineHeight: 20,
       color: props.isActivated
         ? defaultColors.secondary
+        : props.isBlured
+        ? defaultColors.error
         : defaultColors.primary,
       textDecorationLine: props.isActivated ? "line-through" : "none"
     }

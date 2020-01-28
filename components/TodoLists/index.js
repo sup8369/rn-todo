@@ -42,16 +42,16 @@ class TodoLists extends Component {
       utils.timestampToUsable(date),
       [
         {
-          text: "Cancel",
+          text: "취소",
           onPress: () => console.log("Cancel Pressed"),
           style: "cancel"
         },
         {
-          text: "Delete Task",
+          text: "할일 삭제",
           onPress: () => this.props.deleteTodo(id)
         },
         {
-          text: "Edit Task",
+          text: "할일 수정",
           onPress: () => {
             this.setState({
               lastSelected: {
@@ -76,8 +76,9 @@ class TodoLists extends Component {
           return (
             <TodoItem
               key={todo.id}
-              title={`${todo.title}\n- ${dateString}`}
+              title={`${todo.title}\n마감: ${dateString}`}
               isChecked={todo.completed}
+              isBlured={todo.willFinish < new Date().getTime()}
               onClick={() => {
                 this.props.completeTodo(todo.id);
               }}

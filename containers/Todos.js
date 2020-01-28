@@ -33,9 +33,9 @@ class Todos extends Component {
     return (
       <View style={defaultStyles.container}>
         <View style={defaultStyles.marginContainer}>
-          <Title isLarge={true}>Good {utils.getGreetMessage()},</Title>
+          <Title isLarge={true}>Simple</Title>
           <Title isLarge={true} isBold={true}>
-            Guest
+            Todo App
           </Title>
           <ScrollView
             horizontal={true}
@@ -52,9 +52,7 @@ class Todos extends Component {
               let taskCount = 0;
               this.props.todos &&
                 (taskCount = this.props.todos.filter(x => !x.completed).length);
-              return `Today, ${taskCount < 1 ? "no" : taskCount} task${
-                taskCount > 1 ? "s" : ""
-              } remain`;
+              return `${taskCount}개의 할일이 있습니다.`;
             })()}
           </Title>
           <Spacer />
@@ -72,7 +70,15 @@ class Todos extends Component {
             showsVerticalScrollIndicator={false}
             style={styles().todoWrapper}
           >
-            <TodoLists data={this.props.todos} />
+            <TodoLists
+              data={this.props.todos.sort(function(a, b) {
+                return a.willFinish < b.willFinish
+                  ? -1
+                  : a.willFinish > b.willFinish
+                  ? 1
+                  : 0;
+              })}
+            />
             <View style={styles().todoFooter} />
           </ScrollView>
         </View>

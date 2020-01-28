@@ -14,13 +14,15 @@ const dateToTimestamp = timestamp => {
 };
 
 const timestampToUsable = timestamp => {
-  const date = new Date(timestamp);
-  const dayMonth = date.toDateString().split(" ");
-  const ampm = date.getHours() >= 12 ? "pm" : "am";
-  const minute = date.getMinutes();
-  const dateString = `${dayMonth[1]} ${dayMonth[2]} ${date.getHours() % 12 ||
-    12}:${minute < 10 ? "0" : ""}${minute}${ampm}`;
-  return dateString;
+  const targetDate = new Date(timestamp);
+  const currentDate = new Date();
+  const diffMs = targetDate.getTime() - currentDate.getTime();
+  let H = Math.floor((diffMs % 86400000) / 3600000);
+  let M = Math.round(((diffMs % 86400000) % 3600000) / 60000);
+
+  //diff = Math.ceil(diff / (1000 * 3600));
+
+  return `${H}시간 ${M}분 남음.`;
 };
 
 const getGreetMessage = () => {

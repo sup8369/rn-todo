@@ -3,7 +3,8 @@ const whiteTheme = {
   secondary: "#d1cece",
   fullwhite: "#ffffff",
   white: "#efefef",
-  dark: "#000000"
+  dark: "#000000",
+  error: "#ff0000"
 };
 
 const darkTheme = {
@@ -11,15 +12,8 @@ const darkTheme = {
   secondary: "#bbbbbb",
   fullwhite: "#0088cc",
   white: "#012345",
-  dark: "#000"
-};
-
-const dirtyTheme = {
-  primary: "#FF0000",
-  secondary: "#00FF00",
-  fullwhite: "#00000",
-  white: "#000FFF",
-  dark: "#FFF000"
+  dark: "#000",
+  error: "#ff0000"
 };
 
 defaultColors = whiteTheme;

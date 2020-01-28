@@ -54,10 +54,10 @@ class TodoEditor extends Component {
             date={this.state.date}
             mode="datetime"
             placeholder="Select a date"
-            format="YYYY-MM-DDThh:mm:00Z"
+            format="YYYY-MM-DDTHH:MM:00Z"
             minDate={new Date()}
-            confirmBtnText="Confirm"
-            cancelBtnText="Cancel"
+            confirmBtnText="확인"
+            cancelBtnText="취소"
             showIcon={false}
             customStyles={{
               dateInput: {
