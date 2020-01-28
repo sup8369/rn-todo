@@ -16,8 +16,9 @@ import TodoEditor from "../components/TodoEditor";
 
 import RBSheet from "react-native-raw-bottom-sheet";
 import DeviceInfo from "react-native-device-info";
-import utils from "../utils";
+
 import DateLists from "../components/DateList";
+import { updateData } from "../actions";
 
 class Todos extends Component {
   static navigationOptions = {
@@ -29,13 +30,19 @@ class Todos extends Component {
   closeBottomSheet = () => {
     this.RBSheet.close();
   };
+  componentDidMount() {
+    this.interval = setInterval(() => this.props.updateData(), 60000);
+  }
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
   render() {
     return (
       <View style={defaultStyles.container}>
         <View style={defaultStyles.marginContainer}>
           <Title isLarge={true}>Simple</Title>
           <Title isLarge={true} isBold={true}>
-            Todo App
+            {new Date(this.props.time).toLocaleString()}
           </Title>
           <ScrollView
             horizontal={true}
@@ -43,7 +50,7 @@ class Todos extends Component {
             showsHorizontalScrollIndicator={false}
             style={styles().dateContainer}
           >
-            <DateLists></DateLists>
+            <DateLists data={this.props.todos}></DateLists>
           </ScrollView>
         </View>
         <View style={[defaultStyles.marginContainer, styles().todoTitle]}>
@@ -95,13 +102,19 @@ class Todos extends Component {
     );
   }
 }
+let mapDispatchToProps = dispatch => {
+  return {
+    updateData: () => dispatch(updateData())
+  };
+};
 
 let mapStateToProps = state => {
   return {
+    time: state.updateData,
     todos: state.data
   };
 };
 
-Todos = connect(mapStateToProps)(Todos);
+Todos = connect(mapStateToProps, mapDispatchToProps)(Todos);
 
 export default Todos;

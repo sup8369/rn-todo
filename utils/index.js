@@ -17,12 +17,12 @@ const timestampToUsable = timestamp => {
   const targetDate = new Date(timestamp);
   const currentDate = new Date();
   const diffMs = targetDate.getTime() - currentDate.getTime();
-  let H = Math.floor((diffMs % 86400000) / 3600000);
-  let M = Math.round(((diffMs % 86400000) % 3600000) / 60000);
+  const H = Math.floor((diffMs % 86400000) / 3600000);
+  const M = Math.abs(Math.round(((diffMs % 86400000) % 3600000) / 60000));
 
   //diff = Math.ceil(diff / (1000 * 3600));
 
-  return `${H}시간 ${M}분 남음.`;
+  return `${H}시간 ${M}분 ${H < 0 ? "지남" : "남음"}.`;
 };
 
 const getGreetMessage = () => {

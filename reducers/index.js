@@ -1,19 +1,26 @@
-import { ADD_TODO, DELETE_TODO, EDIT_TODO, COMPLETE_TODO } from "../actions";
+import {
+  ADD_TODO,
+  DELETE_TODO,
+  EDIT_TODO,
+  COMPLETE_TODO,
+  UPDATE_DATA
+} from "../actions";
 import Utils from "../utils";
 
 const initialState = {
+  updateData: new Date().getTime(),
   data: [
     {
       id: Utils.randomStringGenerator(10),
       title: "Make a todo!",
-      createdAt: 1580128085,
+      createdAt: 0,
       willFinish: 1580129085,
       completed: false
     },
     {
       id: Utils.randomStringGenerator(10),
       title: "Finish make to!",
-      createdAt: 1580129085,
+      createdAt: 0,
       willFinish: 1580130085,
       completed: false
     }
@@ -29,7 +36,7 @@ export default function todos(state = initialState, action) {
           {
             id: Utils.randomStringGenerator(10),
             title: action.title,
-            createdAt: new Date().getTime(),
+            createdAt: 0,
             willFinish: Utils.dateToTimestamp(action.date),
             completed: false
           },
@@ -65,7 +72,15 @@ export default function todos(state = initialState, action) {
           return todo;
         })
       });
-
+    case UPDATE_DATA:
+      return Object.assign({}, state, {
+        updateData: new Date().getTime(),
+        data: state.data.map(x => {
+          return Object.assign({}, x, {
+            createdAt: ++x.createdAt
+          });
+        })
+      });
     default:
       return state;
   }
