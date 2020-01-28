@@ -2,7 +2,6 @@ import { ADD_TODO, DELETE_TODO, EDIT_TODO, COMPLETE_TODO } from "../actions";
 import Utils from "../utils";
 
 const initialState = {
-  isFetchingAllTodos: false,
   data: [
     {
       id: Utils.randomStringGenerator(10),
@@ -24,6 +23,7 @@ const initialState = {
 export default function todos(state = initialState, action, id) {
   switch (action.type) {
     case ADD_TODO:
+      if (!state.data) state.data = [];
       return Object.assign({}, state, {
         data: [
           {
