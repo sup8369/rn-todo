@@ -39,7 +39,7 @@ class TodoLists extends Component {
   alertControl = (id, title, date) => {
     Alert.alert(
       title,
-      utils.timestampToUsable(date),
+      `${utils.timestampToUsable(date)}\n${new Date(date).toLocaleString()}`,
       [
         {
           text: "취소",

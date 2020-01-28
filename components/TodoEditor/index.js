@@ -3,6 +3,7 @@ import {
   View,
   StyleSheet,
   TextInput,
+  Alert,
   ViewPropTypes as RNViewPropTypes
 } from "react-native";
 
@@ -41,7 +42,7 @@ class TodoEditor extends Component {
         <TextInput
           style={{ fontSize: 22 }}
           autoFocus={true}
-          placeholder="Add a task"
+          placeholder="할 일 추가"
           editable
           selectionColor={defaultColors.primary}
           maxLength={40}
@@ -53,8 +54,8 @@ class TodoEditor extends Component {
             style={{ width: 240 }}
             date={this.state.date}
             mode="datetime"
-            placeholder="Select a date"
-            format="YYYY-MM-DDTHH:MM:00Z"
+            placeholder="날짜 선택하기"
+            format="YYYY-MM-DDTHH:mm:00Z"
             minDate={new Date()}
             confirmBtnText="확인"
             cancelBtnText="취소"
@@ -74,7 +75,10 @@ class TodoEditor extends Component {
           <Icon
             name={this.props.isEditMode ? "checkmark-circle" : "add-circle"}
             onPress={() => {
-              if (!this.state.date || !this.state.todoTitle) return;
+              if (!this.state.date || !this.state.todoTitle) {
+                Alert.alert("추가 실패", "날짜나 제목이 입력되지 않았습니다.");
+                return;
+              }
               this.props.closeFunc();
               this.props.isEditMode
                 ? this.props.editTodo(
