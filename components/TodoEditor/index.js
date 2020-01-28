@@ -45,11 +45,11 @@ class TodoEditor extends Component {
         ></TextInput>
         <View style={styles().footerContainer}>
           <DatePicker
-            style={{ width: 200 }}
+            style={{ width: 240 }}
             date={this.state.date}
             mode="datetime"
             placeholder="Select a date"
-            format="YYYY-MM-DD / hh:mm a"
+            format="YYYY-MM-DDThh:mm:ssZ"
             confirmBtnText="Confirm"
             cancelBtnText="Cancel"
             showIcon={false}
@@ -88,7 +88,10 @@ class TodoEditor extends Component {
 }
 let mapDispatchToProps = dispatch => {
   return {
-    addTodo: (title, date) => dispatch(addTodo(title, new Date(date).getTime()))
+    addTodo: (title, date) => {
+      alert(new Date(date));
+      dispatch(addTodo(title, new Date(date).getTime()));
+    }
   };
 };
 

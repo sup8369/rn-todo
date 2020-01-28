@@ -7,7 +7,7 @@ import {
 import PropTypes from "prop-types";
 import TodoItem from "../TodoItem";
 import { connect } from "react-redux";
-import { completeTodo } from "../../actions";
+import { completeTodo, deleteTodo } from "../../actions";
 import utils from "../../utils";
 const ViewPropTypes = RNViewPropTypes || View.propTypes;
 
@@ -36,10 +36,11 @@ class TodoLists extends Component {
               title={`${todo.title}\n- ${dateString}`}
               isChecked={todo.completed}
               onClick={() => {
+                alert(todo.willFinish);
                 this.props.completeTodo(todo.id);
               }}
               onLongClick={() => {
-                alert("수정/삭제 메뉴");
+                this.props.deleteTodo(todo.id);
               }}
             />
           );
@@ -50,7 +51,8 @@ class TodoLists extends Component {
 }
 let mapDispatchToProps = dispatch => {
   return {
-    completeTodo: id => dispatch(completeTodo(id))
+    completeTodo: id => dispatch(completeTodo(id)),
+    deleteTodo: id => dispatch(deleteTodo(id))
   };
 };
 

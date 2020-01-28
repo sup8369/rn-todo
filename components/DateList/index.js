@@ -22,6 +22,7 @@ export default class DateLists extends Component {
       <React.Fragment>
         {[...Array(11)].map((x, i) => (
           <DateBlock
+            key={i}
             taskCount={i * 3}
             date={`${i == 0 ? "Today" : "1/24"}`}
             isActivated={i == 0}

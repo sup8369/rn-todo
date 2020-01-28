@@ -14,7 +14,7 @@ const timestampToDate = timestamp => {
 };
 
 const timestampToUsable = timestamp => {
-  const date = new Date(timestamp * 1000.0);
+  const date = new Date(timestamp);
   const dayMonth = date.toDateString().split(" ");
   const ampm = date.getHours() >= 12 ? "pm" : "am";
   const minute = date.getMinutes();

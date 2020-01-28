@@ -20,7 +20,7 @@ const initialState = {
   ]
 };
 
-export default function todos(state = initialState, action, id) {
+export default function todos(state = initialState, action) {
   switch (action.type) {
     case ADD_TODO:
       if (!state.data) state.data = [];
@@ -30,7 +30,7 @@ export default function todos(state = initialState, action, id) {
             id: Utils.randomStringGenerator(10),
             title: action.title,
             createdAt: new Date().getTime(),
-            endTime: Utils.timestampToDate(action.date),
+            willFinish: Utils.timestampToDate(action.date),
             completed: false
           },
           ...state.data
