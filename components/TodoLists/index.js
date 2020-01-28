@@ -38,7 +38,9 @@ class TodoLists extends Component {
               onClick={() => {
                 this.props.completeTodo(todo.id);
               }}
-              onLongClick={() => {}}
+              onLongClick={() => {
+                alert("수정/삭제 메뉴");
+              }}
             />
           );
         })}

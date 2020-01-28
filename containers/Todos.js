@@ -12,7 +12,7 @@ import Title from "../components/Title";
 import Spacer from "../components/Spacer";
 import TodoLists from "../components/TodoLists";
 
-import AddTodo from "./AddTodo";
+import TodoEditor from "../components/TodoEditor";
 
 import RBSheet from "react-native-raw-bottom-sheet";
 import DeviceInfo from "react-native-device-info";
@@ -49,7 +49,9 @@ class Todos extends Component {
         <View style={[defaultStyles.marginContainer, styles().todoTitle]}>
           <Title isBold={true}>
             {(() => {
-              let taskCount = this.props.todos.filter(x => !x.completed).length;
+              let taskCount = 0;
+              this.props.todos &&
+                (taskCount = this.props.todos.filter(x => !x.completed).length);
               return `Today, ${taskCount < 1 ? "no" : taskCount} task${
                 taskCount > 1 ? "s" : ""
               } remain`;
@@ -81,7 +83,7 @@ class Todos extends Component {
           height={DeviceInfo.hasNotch() ? 150 : 130} //130
           closeOnDragDown
         >
-          <AddTodo closeFunc={this.closeBottomSheet} />
+          <TodoEditor closeFunc={this.closeBottomSheet} />
         </RBSheet>
       </View>
     );

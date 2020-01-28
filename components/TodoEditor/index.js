@@ -7,22 +7,26 @@ import {
 } from "react-native";
 
 import { connect } from "react-redux";
-import { addTodo } from "../actions";
-import defaultColors from "../config/theme";
+import { addTodo } from "../../actions";
+import defaultColors from "../../config/theme";
 import { Icon } from "native-base";
-import Spacer from "../components/Spacer";
+import Spacer from "../Spacer";
 import DatePicker from "react-native-datepicker";
 import PropTypes from "prop-types";
 const ViewPropTypes = RNViewPropTypes || View.propTypes;
 
-class AddTodo extends Component {
+class TodoEditor extends Component {
   constructor(props) {
     super(props);
     this.state = { date: null, todoTitle: null };
   }
   static propTypes = {
     ...ViewPropTypes,
-    closeFunc: PropTypes.func
+    closeFunc: PropTypes.func,
+    isEditMode: PropTypes.bool,
+    title: PropTypes.string,
+    date: PropTypes.number,
+    id: PropTypes.string
   };
   onChangeText = text => {
     this.setState({ todoTitle: text });
@@ -88,9 +92,9 @@ let mapDispatchToProps = dispatch => {
   };
 };
 
-AddTodo = connect(undefined, mapDispatchToProps)(AddTodo);
+TodoEditor = connect(undefined, mapDispatchToProps)(TodoEditor);
 
-export default AddTodo;
+export default TodoEditor;
 
 const styles = () =>
   StyleSheet.create({
