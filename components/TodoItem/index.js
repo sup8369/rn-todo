@@ -36,7 +36,7 @@ export default class TodoItem extends Component {
         onClick={this.props.onClick}
         onLongClick={this.props.onLongClick}
         isChecked={this.props.isChecked}
-        underlayColor={defaultColors.fullwhite + "77"}
+        underlayColor={defaultColors.fullwhite + "EE"}
         checkedCheckBoxColor={defaultColors.secondary}
         uncheckedCheckBoxColor={
           this.props.isBlured ? defaultColors.error : defaultColors.primary

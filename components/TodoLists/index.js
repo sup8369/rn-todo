@@ -9,7 +9,7 @@ import {
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import TodoItem from "../TodoItem";
-import { completeTodo } from "../../actions";
+import { completeTodo, deleteTodo } from "../../actions";
 import utils from "../../utils";
 import RBSheet from "react-native-raw-bottom-sheet";
 import TodoEditor from "../TodoEditor";
