@@ -18,6 +18,7 @@ const timestampToUsable = timestamp => {
   const currentDate = new Date();
   const diffMs = targetDate.getTime() - currentDate.getTime();
   let D = Math.floor(diffMs / 86400000);
+  if (D < 0) D++;
   let H = Math.floor((diffMs % 86400000) / 3600000) + D * 24;
   if (H < 0) H++;
   const M = Math.round(((diffMs % 86400000) % 3600000) / 60000);
