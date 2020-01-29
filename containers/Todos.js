@@ -88,7 +88,7 @@ class Todos extends Component {
           ref={ref => {
             this.RBSheet = ref;
           }}
-          height={DeviceInfo.hasNotch() ? 140 : 130} //130
+          height={DeviceInfo.hasNotch() ? 150 : 145} //130
           closeOnDragDown
         >
           <TodoEditor closeFunc={this.closeBottomSheet} />
