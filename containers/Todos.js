@@ -42,7 +42,7 @@ class Todos extends Component {
         <View style={defaultStyles.marginContainer}>
           <Title isLarge={true}>Simple</Title>
           <Title isLarge={true} isBold={true}>
-            {new Date(this.props.time).toLocaleString()}
+            Todo App
           </Title>
           <ScrollView
             horizontal={true}

@@ -20,7 +20,7 @@ export default class Settings extends Component {
             Settings
           </Title>
           <Text>User Name</Text>
-          <Text>View Options</Text>
+          <Text>View Filter</Text>
           <Text>Theme</Text>
         </View>
       </View>
