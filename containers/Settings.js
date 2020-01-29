@@ -22,6 +22,7 @@ export default class Settings extends Component {
           <Text>User Name</Text>
           <Text>View Filter</Text>
           <Text>Theme</Text>
+          <Text>투두리스트 LongTap으로 수정/제거</Text>
         </View>
       </View>
     );
