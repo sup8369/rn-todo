@@ -1,18 +1,20 @@
 import React, { Component } from "react";
 import {
   View,
-  StyleSheet,
   Alert,
+  StyleSheet,
+  Text,
   ViewPropTypes as RNViewPropTypes
 } from "react-native";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import TodoItem from "../TodoItem";
-import { connect } from "react-redux";
-import { completeTodo, deleteTodo } from "../../actions";
+import { completeTodo } from "../../actions";
 import utils from "../../utils";
 import RBSheet from "react-native-raw-bottom-sheet";
 import TodoEditor from "../TodoEditor";
 import DeviceInfo from "react-native-device-info";
+import { Icon } from "native-base";
 const ViewPropTypes = RNViewPropTypes || View.propTypes;
 
 class TodoLists extends Component {
@@ -25,7 +27,8 @@ class TodoLists extends Component {
   };
   static propTypes = {
     ...ViewPropTypes,
-    data: PropTypes.array
+    data: PropTypes.array,
+    todo: PropTypes.func
   };
   static defaultProps = {
     data: []
@@ -88,6 +91,13 @@ class TodoLists extends Component {
             />
           );
         })}
+        <View style={styles().addButton}>
+          <Icon
+            style={styles().addIcon}
+            onPress={this.props.todo}
+            name="add-circle"
+          ></Icon>
+        </View>
         <RBSheet
           ref={ref => {
             this.RBSheet = ref;
@@ -120,6 +130,17 @@ export default TodoLists;
 
 const styles = () =>
   StyleSheet.create({
+    addButton: {
+      flex: 1,
+      borderRadius: 10,
+      padding: 10,
+      margin: 10,
+      backgroundColor: defaultColors.fullwhite
+    },
+    addIcon: {
+      flex: 1,
+      textAlign: "center"
+    },
     todoContainer: {
       flexDirection: "column",
       paddingTop: 19

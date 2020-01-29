@@ -26,7 +26,9 @@ class Todos extends Component {
       <Icon name="list" style={{ color: tintColor }} />
     )
   };
-
+  openBottomSheet = () => {
+    this.RBSheet.open();
+  };
   closeBottomSheet = () => {
     this.RBSheet.close();
   };
@@ -44,14 +46,6 @@ class Todos extends Component {
           <Title isLarge={true} isBold={true}>
             Todo App
           </Title>
-          <ScrollView
-            horizontal={true}
-            bounces={false}
-            showsHorizontalScrollIndicator={false}
-            style={styles().dateContainer}
-          >
-            <DateLists data={this.props.todos}></DateLists>
-          </ScrollView>
         </View>
         <View style={[defaultStyles.marginContainer, styles().todoTitle]}>
           <Title isBold={true}>
@@ -78,6 +72,7 @@ class Todos extends Component {
             style={styles().todoWrapper}
           >
             <TodoLists
+              todo={this.openBottomSheet}
               data={this.props.todos.sort(function(a, b) {
                 return a.willFinish < b.willFinish
                   ? -1
